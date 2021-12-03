@@ -13,11 +13,21 @@ const app = express();
 app.use(express.json());
 
 // Routerek importálása
-const exampleRouter = require("./routers/example");
+// const exampleRouter = require("./routers/example");
+const storage = require("./routers/storage");
+const auth = require("./routers/auth");
+const ingredient = require("./routers/ingredient");
+const recipe = require("./routers/recipe");
+const appliance = require("./routers/appliance");
 // ...
 
 // Routerek bind-olása adott végpontokhoz
-app.use("/example", exampleRouter);
+// app.use("/example", exampleRouter);
+app.use("/storages", storage);
+app.use("/auth", auth);
+app.use("/ingredients", ingredient);
+app.use("/recipes", recipe);
+app.use("/appliances", appliance);
 // Ide vedd fel a további routereket/végpontokat:
 // ...
 
@@ -30,7 +40,12 @@ app.use(async (err, req, res, next) => {
     }
     await fs.appendFile(
         "error.log",
-        [`[${date.format(new Date(), "YYYY. MM. DD. HH:mm:ss")}]`, err.stack].join("\n") + "\n\n"
+        [
+            `[${date.format(new Date(), "YYYY. MM. DD. HH:mm:ss")}]`,
+            "Name: " + err.name,
+            "Message: " + err.message,
+            "Stack:\n" + err.stack,
+        ].join("\n") + "\n\n"
     );
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
         httpStatus: ReasonPhrases.INTERNAL_SERVER_ERROR,
