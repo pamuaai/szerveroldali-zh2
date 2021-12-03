@@ -1,0 +1,21 @@
+{
+    "subject": "Szerveroldali webprogramozás",
+    "task": "REST API ZH",
+    "ignore": [
+        ".idea/**",
+        ".vscode/**",
+        "node_modules/**",
+        "package-lock.json",
+        "zip.js",
+        "zipfiles/**",
+        "config/zipper.json",
+        "database/*.sqlite",
+        "test/**",
+        "error.log",
+        "**/*.md",
+        "**/.gitignore",
+        "**/.editorconfig",
+        "**/.prettierignore",
+        "**/.prettierrc"
+    ]
+}
